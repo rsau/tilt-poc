@@ -1,0 +1,95 @@
+services:
+
+  mariadb:
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: drupal
+      MARIADB_USER: drupal
+      MARIADB_PASSWORD: drupal
+    volumes:
+      - ./sites/api/data:/var/lib/mysql
+
+  mariadb-client1:
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: drupal
+      MARIADB_USER: drupal
+      MARIADB_PASSWORD: drupal
+    volumes:
+      - ./sites/client1/data:/var/lib/mysql
+
+  mariadb-client2:
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: drupal
+      MARIADB_USER: drupal
+      MARIADB_PASSWORD: drupal
+    volumes:
+      - ./sites/client2/data:/var/lib/mysql
+
+  mariadb-client3:
+    image: mariadb
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: drupal
+      MARIADB_USER: drupal
+      MARIADB_PASSWORD: drupal
+    volumes:
+      - ./sites/client3/data:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "9001:8080"
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "9002:8025"
+
+  api:
+    image: drupal:9-php8.1
+    ports:
+      - "8900:80"
+    volumes:
+      - ./sites/api/modules:/var/www/html/modules
+      - ./sites/api/profiles:/var/www/html/profiles
+      - ./sites/api/themes:/var/www/html/themes
+      - ./sites/api/sites:/var/www/html/sites:delegated
+    restart: always
+
+  client1:
+    image: drupal:9-php8.1
+    ports:
+      - "8901:80"
+    volumes:
+      - ./sites/client1/modules:/var/www/html/modules
+      - ./sites/client1/profiles:/var/www/html/profiles
+      - ./sites/client1/themes:/var/www/html/themes
+      - ./sites/client1/sites:/var/www/html/sites:delegated
+    restart: always
+
+  client2:
+    image: drupal:9-php8.1
+    ports:
+      - "8902:80"
+    volumes:
+      - ./sites/client2/modules:/var/www/html/modules
+      - ./sites/client2/profiles:/var/www/html/profiles
+      - ./sites/client2/themes:/var/www/html/themes
+      - ./sites/client2/sites:/var/www/html/sites:delegated
+    restart: always
+
+networks:
+  govcms-api-network:
+    external: true
+  default:
+    external: false
