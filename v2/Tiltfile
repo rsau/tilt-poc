@@ -1,0 +1,23 @@
+# Welcome to GovCMS!
+print("""
+-----------------------------------------------------------------
+✨ Hello GovCMS!
+-----------------------------------------------------------------
+""".strip())
+
+
+# Build local instances.
+k8s_yaml('deploy/app.yaml')
+
+# Setup and configure the resources.
+k8s_resource(
+    workload='app',
+    port_forwards=[
+        #port_forward(9000, 8080, name='API')
+    ]
+)
+
+
+# Good bye.
+if config.tilt_subcommand == 'down':
+    print('Goodbye world!')
