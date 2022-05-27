@@ -48,28 +48,27 @@ services:
     image: adminer
     restart: always
     ports:
-      - "9001:8080"
+      - "50001:8080"
 
   mailhog:
     image: mailhog/mailhog
     ports:
-      - "9002:8025"
+      - "50002:8025"
 
   api:
     image: drupal:9-php8.1
     ports:
-      - "8900:80"
+      - "51001:80"
     volumes:
       - ./sites/api/modules:/var/www/html/modules
       - ./sites/api/profiles:/var/www/html/profiles
       - ./sites/api/themes:/var/www/html/themes
       - ./sites/api/sites:/var/www/html/sites:delegated
-    restart: always
 
   client1:
     image: drupal:9-php8.1
     ports:
-      - "8901:80"
+      - "52001:80"
     volumes:
       - ./sites/client1/modules:/var/www/html/modules
       - ./sites/client1/profiles:/var/www/html/profiles
@@ -80,7 +79,7 @@ services:
   client2:
     image: drupal:9-php8.1
     ports:
-      - "8902:80"
+      - "52002:80"
     volumes:
       - ./sites/client2/modules:/var/www/html/modules
       - ./sites/client2/profiles:/var/www/html/profiles
