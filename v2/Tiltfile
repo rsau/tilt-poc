@@ -15,6 +15,11 @@ k8s_resource(
     "govcms-api-nginx",
     port_forwards=['9000:8080'],
     labels="api")
+k8s_resource(
+  objects=['govcms-api:Namespace:default'],
+  new_name='namespace',
+  labels="api"
+)
 
 # Good bye.
 if config.tilt_subcommand == 'down':
