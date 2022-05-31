@@ -7,7 +7,7 @@ k8s_resource("govcms-api-cli", labels="api")
 k8s_resource("govcms-api-php", labels="api")
 k8s_resource(
     "govcms-api-nginx",
-    port_forwards=['9000:8080'],
+    port_forwards=['8888:8080'],
     labels="api")
 k8s_resource(
   objects=['govcms-api:Namespace:default'],
