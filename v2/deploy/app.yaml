@@ -1,66 +1,32 @@
 ---
 apiVersion: v1
-kind: Pod
+kind: Namespace
 metadata:
-  name: cli
+  name: govcms-api
   labels:
-    app: cli
-spec:
-  containers:
-    - name: cli
-      image: govcms/govcms:9.x-latest
-      env:
-        - name: LAGOON_ROUTE
-          value: api.govcms.local
+    name: govcms-api
 
 ---
-apiVersion: v1
-kind: Pod
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: php
+  name: nginx
+  namespace: govcms-api
   labels:
-    app: php
+    app: nginx
 spec:
-  containers:
-    - name: php
-      image: govcms/php:9.x-latest
-      ports:
-        - containerPort: 9000
-      env:
-        - name: LAGOON_ROUTE
-          value: api.govcms.local
-        - name: NGINX_FASTCGI_PASS
-          value: php
-
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: app
-  labels:
-    app: web
-spec:
-  containers:
-    - name: nginx
-      image: govcms/nginx-drupal:9.x-latest
-      ports:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
         - containerPort: 8080
-      env:
-        - name: LAGOON_ROUTE
-          value: api.govcms.local
-        - name: NGINX_FASTCGI_PASS
-          value: php
-
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: mariadb
-  labels:
-    app: mariadb
-spec:
-  containers:
-    - name: mariadb
-      image: govcms/mariadb-drupal:9.x-latest
-      ports:
-        - containerPort: 3306
+        - containerPort: 8443

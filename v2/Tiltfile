@@ -5,18 +5,16 @@ print("""
 -----------------------------------------------------------------
 """.strip())
 
-
 # Build local instances.
-k8s_yaml('deploy/app.yaml')
+k8s_yaml(kustomize('./kustomize/api'))
 
-# Setup and configure the resources.
+k8s_resource("govcms-api-mariadb", labels="api")
+k8s_resource("govcms-api-cli", labels="api")
+k8s_resource("govcms-api-php", labels="api")
 k8s_resource(
-    workload='app',
-    port_forwards=[
-        #port_forward(9000, 8080, name='API')
-    ]
-)
-
+    "govcms-api-nginx",
+    port_forwards=['9000:8080'],
+    labels="api")
 
 # Good bye.
 if config.tilt_subcommand == 'down':

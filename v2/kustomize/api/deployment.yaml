@@ -1,0 +1,86 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: govcms-api-cli
+  labels:
+    app: cli
+spec:
+  selector:
+    matchLabels:
+      app: cli
+  template:
+    metadata:
+      labels:
+        app: cli
+    spec:
+      containers:
+      - name: cli
+        image: govcms/govcms:9.x-latest
+        env:
+        - name: LAGOON_ROUTE
+          value: api.govcms.local
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: govcms-api-mariadb
+  labels:
+    app: mariadb
+spec:
+  selector:
+    matchLabels:
+      app: mariadb
+  template:
+    metadata:
+      labels:
+        app: mariadb
+    spec:
+      containers:
+      - name: mariadb
+        image: govcms/mariadb-drupal:9.x-latest
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: govcms-api-php
+  labels:
+    app: php
+spec:
+  selector:
+    matchLabels:
+      app: php
+  template:
+    metadata:
+      labels:
+        app: php
+    spec:
+      containers:
+      - name: php
+        image: govcms/php:9.x-latest
+        ports:
+        - containerPort: 9000
+          name: http
+          protocol: TCP
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: govcms-api-nginx
+  labels:
+    app: nginx
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: govcms/nginx-drupal:9.x-latest
