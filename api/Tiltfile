@@ -1,0 +1,16 @@
+# Build local instances.
+k8s_yaml(kustomize('./kustomize'))
+
+# Group the resources.
+k8s_resource("govcms-api-mariadb", labels="api")
+k8s_resource("govcms-api-cli", labels="api")
+k8s_resource("govcms-api-php", labels="api")
+k8s_resource(
+    "govcms-api-nginx",
+    port_forwards=['9000:8080'],
+    labels="api")
+k8s_resource(
+  objects=['govcms-api:Namespace:default'],
+  new_name='namespace',
+  labels="api"
+)
