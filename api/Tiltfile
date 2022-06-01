@@ -10,7 +10,7 @@ k8s_resource(
     port_forwards=['8888:8080'],
     labels="api")
 k8s_resource(
-  objects=['govcms-api:Namespace:default'],
-  new_name='namespace',
+  objects=['govcms-api:Namespace:default', 'local-storage:StorageClass:default', 'govcms-api-pv:PersistentVolume:default', 'govcms-api-pvc:PersistentVolumeClaim:govcms-api'],
+  new_name='Kubernetes configs',
   labels="api"
 )
