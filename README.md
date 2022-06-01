@@ -15,6 +15,12 @@
 kubectl get svc --namespace=govcms-api
 ```
 
+- Get nodes
+
+```bash
+kubectl get nodes
+```
+
 ### Use the Kubernetes Dashboard UI
 
 You can enable access to the Dashboard using the kubectl command-line tool, by running the following command:
