@@ -16,11 +16,27 @@ metadata:
 spec:
   storageClassName: local-storage
   capacity:
-    storage: 200Mi
+    storage: 500Mi
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/mnt/data"
+    path: "/mnt/files"
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: govcms-api-pv-mysql
+  labels:
+    type: local
+spec:
+  storageClassName: local-storage
+  capacity:
+    storage: 500Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/database"
 
 ---
 apiVersion: v1
@@ -33,4 +49,18 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 200Mi
+      storage: 100Mi
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: govcms-api-pvc-mysql
+spec:
+  storageClassName: local-storage
+  persistentVolumeReclaimPolicy: Reclaim
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi

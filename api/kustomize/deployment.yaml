@@ -44,9 +44,19 @@ spec:
       labels:
         app: mariadb
     spec:
+      volumes:
+        - name: govcms-api-pv-mysql
+          persistentVolumeClaim:
+            claimName: govcms-api-pvc-mysql
       containers:
       - name: mariadb
         image: govcms/mariadb-drupal:9.x-latest
+        volumeMounts:
+          - mountPath: "/var/lib/mysql/drupal"
+            subPath: "database/govcms-api"
+            name: govcms-api-pv-mysql
+      securityContext:
+        runAsUser: 101
 
 ---
 apiVersion: apps/v1
