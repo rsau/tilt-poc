@@ -14,12 +14,19 @@ spec:
       labels:
         app: cli
     spec:
+      volumes:
+        - name: govcms-api-pv
+          persistentVolumeClaim:
+            claimName: govcms-api-pvc
       containers:
       - name: cli
         image: govcms/govcms:9.x-latest
         env:
         - name: LAGOON_ROUTE
           value: api.govcms.local
+        volumeMounts:
+          - mountPath: "/app/web/sites/default/files"
+            name: govcms-api-pv
 
 ---
 apiVersion: apps/v1
@@ -57,6 +64,10 @@ spec:
       labels:
         app: php
     spec:
+      volumes:
+        - name: govcms-api-pv
+          persistentVolumeClaim:
+            claimName: govcms-api-pvc
       containers:
       - name: php
         image: govcms/php:9.x-latest
@@ -64,6 +75,9 @@ spec:
         - containerPort: 9000
           name: http
           protocol: TCP
+        volumeMounts:
+          - mountPath: "/app/web/sites/default/files"
+            name: govcms-api-pv
 
 ---
 apiVersion: apps/v1
@@ -81,6 +95,13 @@ spec:
       labels:
         app: nginx
     spec:
+      volumes:
+        - name: govcms-api-pv
+          persistentVolumeClaim:
+            claimName: govcms-api-pvc
       containers:
       - name: nginx
         image: govcms/nginx-drupal:9.x-latest
+        volumeMounts:
+          - mountPath: "/app/web/sites/default/files"
+            name: govcms-api-pv
