@@ -54,10 +54,7 @@ spec:
         image: govcms/mariadb-drupal:9.x-latest
         volumeMounts:
           - mountPath: "/var/lib/mysql"
-            subPath: "govcms-api"
             name: govcms-api-pv-mysql
-      securityContext:
-        runAsUser: 101
 
 ---
 apiVersion: apps/v1

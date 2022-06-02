@@ -6,7 +6,7 @@ print("""
 """.strip())
 
 # Build local instances.
-k8s_yaml(kustomize('./configs/kustomize'))
+# k8s_yaml(kustomize('./configs/kustomize'))
 
 # include sub sites.
 include('./api/Tiltfile')

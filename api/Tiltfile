@@ -2,10 +2,30 @@
 k8s_yaml(kustomize('./kustomize'))
 
 # Group the resources.
-k8s_resource("govcms-api-mariadb", labels="api")
-k8s_resource("govcms-api-cli", labels="api")
-k8s_resource("govcms-api-php", labels="api")
+k8s_resource(
+    objects=['govcms-api:Namespace'],
+    new_name='govcms-api-namespace',
+    labels="api")
+k8s_resource(
+    resource_deps=['govcms-api-namespace'],
+    objects=['local-storage:storageclass', 'govcms-api-pv:persistentvolume',
+             'govcms-api-pvc:persistentvolumeclaim', 'govcms-api-pvc-mysql:persistentvolumeclaim'],
+    new_name='govcms-api-configs',
+    labels="api")
+k8s_resource(
+    "govcms-api-mariadb",
+    resource_deps=['govcms-api-configs'],
+    labels="api")
+k8s_resource(
+    "govcms-api-cli",
+    resource_deps=['govcms-api-configs'],
+    labels="api")
+k8s_resource(
+    "govcms-api-php",
+    resource_deps=['govcms-api-configs'],
+    labels="api")
 k8s_resource(
     "govcms-api-nginx",
+    resource_deps=['govcms-api-php'],
     port_forwards=['8888:8080'],
     labels="api")
