@@ -1,0 +1,16 @@
+services:
+
+  client2:
+    image: govcms.api/govcms
+    ports:
+      - "51003:80"
+    volumes:
+      - ./sites/client2/modules:/var/www/html/modules/custom
+      - ./sites/client2/themes:/var/www/html/themes/custom
+      - ./sites/client2/sites:/var/www/html/sites:delegated
+
+networks:
+  govcms-api-network:
+    external: true
+  default:
+    external: false

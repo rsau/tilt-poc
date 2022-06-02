@@ -1,0 +1,16 @@
+services:
+
+  client1:
+    image: drupal:9-php8.1
+    ports:
+      - "51002:80"
+    volumes:
+      - ./sites/client1/modules:/var/www/html/modules/custom
+      - ./sites/client1/themes:/var/www/html/themes/custom
+      - ./sites/client1/sites:/var/www/html/sites:delegated
+
+networks:
+  govcms-api-network:
+    external: true
+  default:
+    external: false

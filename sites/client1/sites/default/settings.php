@@ -249,7 +249,7 @@ $databases = [];
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = 'ic2W3zCoE-pxcRvYlRv3dphk-GjTjIi4i-AhajKUhX8-UPMUhYEjnS7stzwDN9TtRCpet28Dew';
+$settings['hash_salt'] = 'UbuuhDqG6T_-mKKukoPbHKBhON-RN1fRGWSGgwib7X_LTdnpxEnTNEFKzz22KRYoO1-oVm0M-g';
 
 /**
  * Deployment identifier.
@@ -771,15 +771,14 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 # if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
-
 $databases['default']['default'] = array (
-  'database' => 'drupal',
+  'database' => 'client1',
   'username' => 'drupal',
   'password' => 'drupal',
   'prefix' => '',
-  'host' => 'mariadb-client1',
+  'host' => 'mariadb',
   'port' => '3306',
   'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
   'driver' => 'mysql',
 );
-$settings['config_sync_directory'] = 'sites/default/files/config_I2EXvO8aMnD1OTM5QTBM2jGYfQ3b89yoOOVp0VXQxgy6ivs0Zl_MpJtSSO7s8NmnX6_XPtIyZQ/sync';
+$settings['config_sync_directory'] = 'sites/default/files/config_rINXUnmXGM9j0N8Nl6c2QcYmV3i2R7Wnh03bR1DpbvpBMEH0Jx2-kTovC-xex_jb12m9APaT7g/sync';

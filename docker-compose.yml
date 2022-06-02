@@ -9,40 +9,8 @@ services:
       MARIADB_USER: drupal
       MARIADB_PASSWORD: drupal
     volumes:
-      - ./sites/api/data:/var/lib/mysql
-
-  mariadb-client1:
-    image: mariadb
-    restart: always
-    environment:
-      MARIADB_ROOT_PASSWORD: root
-      MARIADB_DATABASE: drupal
-      MARIADB_USER: drupal
-      MARIADB_PASSWORD: drupal
-    volumes:
-      - ./sites/client1/data:/var/lib/mysql
-
-  mariadb-client2:
-    image: mariadb
-    restart: always
-    environment:
-      MARIADB_ROOT_PASSWORD: root
-      MARIADB_DATABASE: drupal
-      MARIADB_USER: drupal
-      MARIADB_PASSWORD: drupal
-    volumes:
-      - ./sites/client2/data:/var/lib/mysql
-
-  mariadb-client3:
-    image: mariadb
-    restart: always
-    environment:
-      MARIADB_ROOT_PASSWORD: root
-      MARIADB_DATABASE: drupal
-      MARIADB_USER: drupal
-      MARIADB_PASSWORD: drupal
-    volumes:
-      - ./sites/client3/data:/var/lib/mysql
+      - ./.docker/mariadb:/docker-entrypoint-initdb.d
+      - ./data/db:/var/lib/mysql
 
   adminer:
     image: adminer
@@ -53,39 +21,8 @@ services:
   mailhog:
     image: mailhog/mailhog
     ports:
-      - "50002:8025"
-
-  api:
-    image: drupal:9-php8.1
-    ports:
-      - "51001:80"
-    volumes:
-      - ./sites/api/modules:/var/www/html/modules
-      - ./sites/api/profiles:/var/www/html/profiles
-      - ./sites/api/themes:/var/www/html/themes
-      - ./sites/api/sites:/var/www/html/sites:delegated
-
-  client1:
-    image: drupal:9-php8.1
-    ports:
-      - "52001:80"
-    volumes:
-      - ./sites/client1/modules:/var/www/html/modules
-      - ./sites/client1/profiles:/var/www/html/profiles
-      - ./sites/client1/themes:/var/www/html/themes
-      - ./sites/client1/sites:/var/www/html/sites:delegated
-    restart: always
-
-  client2:
-    image: drupal:9-php8.1
-    ports:
-      - "52002:80"
-    volumes:
-      - ./sites/client2/modules:/var/www/html/modules
-      - ./sites/client2/profiles:/var/www/html/profiles
-      - ./sites/client2/themes:/var/www/html/themes
-      - ./sites/client2/sites:/var/www/html/sites:delegated
-    restart: always
+      - "1025:1025"
+      - "8025:8025"
 
 networks:
   govcms-api-network:
