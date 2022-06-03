@@ -1,0 +1,16 @@
+services:
+
+  api-oauth:
+    image: govcms.api/govcms-oauth
+    ports:
+      - "52002:80"
+    volumes:
+      - ./sites/api-oauth/modules:/var/www/html/modules/custom
+      - ./sites/api-oauth/themes:/var/www/html/themes/custom
+      - ./sites/api-oauth/sites:/var/www/html/sites:delegated
+
+networks:
+  govcms-api-network:
+    external: true
+  default:
+    external: false
