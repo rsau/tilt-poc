@@ -6,3 +6,5 @@ CREATE DATABASE IF NOT EXISTS `client3`;
 GRANT ALL ON `client3`.* TO 'drupal'@'%';
 CREATE DATABASE IF NOT EXISTS `client4`;
 GRANT ALL ON `client4`.* TO 'drupal'@'%';
+CREATE DATABASE IF NOT EXISTS `miniorange`;
+GRANT ALL ON `miniorange`.* TO 'drupal'@'%';

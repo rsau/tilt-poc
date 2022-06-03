@@ -1,7 +1,7 @@
 services:
 
   client1:
-    image: govcms.api/govcms
+    image: govcms.api/govcms-client
     ports:
       - "{port}:80"
     volumes:

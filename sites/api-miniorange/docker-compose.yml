@@ -1,0 +1,16 @@
+services:
+
+  api-miniorange:
+    image: govcms.api/govcms-miniorange
+    ports:
+      - "52001:80"
+    volumes:
+      - ./sites/api-miniorange/modules:/var/www/html/modules/custom
+      - ./sites/api-miniorange/themes:/var/www/html/themes/custom
+      - ./sites/api-miniorange/sites:/var/www/html/sites:delegated
+
+networks:
+  govcms-api-network:
+    external: true
+  default:
+    external: false

@@ -1,7 +1,7 @@
 services:
 
   client1:
-    image: drupal:9-php8.1
+    image: govcms.api/govcms-client
     ports:
       - "51002:80"
     volumes:
