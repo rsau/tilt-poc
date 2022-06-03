@@ -1,0 +1,53 @@
+# Drupal JSON:API
+
+## Default endpoints
+
+| Name       | Path         |
+| ---------- | ------------ |
+|block--block | /jsonapi/block/block|
+|editor--editor | /jsonapi/editor/editor|
+|encryption_profile--encryption_profile | /jsonapi/encryption_profile/encryption_profile|
+|field_storage_config--field_storage_config | /jsonapi/field_storage_config/field_storage_config|
+|field_config--field_config | /jsonapi/field_config/field_config|
+|file--file | /jsonapi/file/file|
+|filter_format--filter_format | /jsonapi/filter_format/filter_format|
+|image_style--image_style | /jsonapi/image_style/image_style|
+|jsonapi_resource_config--jsonapi_resource_config | /jsonapi/jsonapi_resource_config/jsonapi_resource_config|xw
+|key_config_override--key_config_override | /jsonapi/key_config_override/key_config_override|
+|key--key | /jsonapi/key/key|
+|media_type--media_type | /jsonapi/media_type/media_type|
+|media--audio | /jsonapi/media/audio|
+|media--document | /jsonapi/media/document|
+|media--image | /jsonapi/media/image|
+|media--remote_video | /jsonapi/media/remote_video|
+|media--video | /jsonapi/media/video|
+|menu_link_content--menu_link_content | /jsonapi/menu_link_content/menu_link_content|
+|node_type--node_type | /jsonapi/node_type/node_type|
+|node--govcms_blog_article | /jsonapi/node/govcms_blog_article|
+|node--govcms_event | /jsonapi/node/govcms_event|
+|node--govcms_foi | /jsonapi/node/govcms_foi|
+|node--govcms_news_and_media | /jsonapi/node/govcms_news_and_media|
+|node--govcms_standard_page | /jsonapi/node/govcms_standard_page|
+|path_alias--path_alias | /jsonapi/path_alias/path_alias|
+|rdf_mapping--rdf_mapping | /jsonapi/rdf_mapping/rdf_mapping|
+|shortcut--default | /jsonapi/shortcut/default|
+|shortcut_set--shortcut_set | /jsonapi/shortcut_set/shortcut_set|
+|action--action | /jsonapi/action/action|
+|menu--menu | /jsonapi/menu/menu|
+|taxonomy_vocabulary--taxonomy_vocabulary | /jsonapi/taxonomy_vocabulary/taxonomy_vocabulary|
+|taxonomy_term--govcms_blog_article_categories | /jsonapi/taxonomy_term/govcms_blog_article_categories|
+|taxonomy_term--govcms_event_categories | /jsonapi/taxonomy_term/govcms_event_categories|
+|taxonomy_term--govcms_media_tags | /jsonapi/taxonomy_term/govcms_media_tags|
+|taxonomy_term--govcms_news_categories | /jsonapi/taxonomy_term/govcms_news_categories|
+|user_role--user_role | /jsonapi/user_role/user_role|
+|user--user | /jsonapi/user/user|
+|workflow--workflow | /jsonapi/workflow/workflow|
+|pathauto_pattern--pathauto_pattern | /jsonapi/pathauto_pattern/pathauto_pattern|
+|password_policy--password_policy | /jsonapi/password_policy/password_policy|
+|view--view | /jsonapi/view/view|
+|base_field_override--base_field_override | /jsonapi/base_field_override/base_field_override|
+|entity_form_display--entity_form_display | /jsonapi/entity_form_display/entity_form_display|
+|entity_view_display--entity_view_display | /jsonapi/entity_view_display/entity_view_display|
+|entity_form_mode--entity_form_mode | /jsonapi/entity_form_mode/entity_form_mode|
+|entity_view_mode--entity_view_mode | /jsonapi/entity_view_mode/entity_view_mode|
+|date_format--date_format | /jsonapi/date_format/date_format|
