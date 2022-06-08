@@ -4,6 +4,9 @@ services:
     image: govcms.api/govcms
     ports:
       - "51001:80"
+    environment:
+      - VIRTUAL_HOST=api.govcms.local
+      - VIRTUAL_PORT=80
     volumes:
       - ./sites/api/modules:/var/www/html/modules/custom
       - ./sites/api/themes:/var/www/html/themes/custom
