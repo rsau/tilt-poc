@@ -19,21 +19,43 @@ docker_build('govcms.api/govcms-miniorange', './.docker/govcms-api')
 docker_build('govcms.api/govcms-oauth', './.docker/govcms-api-oauth')
 
 # Group the development services.
-dc_resource('client1', labels=['Client'])
-dc_resource('client2', labels=['Client'])
+dc_resource('nginx-proxy', labels=['Service'])
+dc_resource('mariadb', labels=['Service'])
+dc_resource('postgres', labels=['Service'])
 dc_resource(
-    'api',
-    links=['api.govcms.local'],
-    labels=['API'])
-dc_resource('api-miniorange', labels=['API'])
-dc_resource(
-    'api-oauth',
-    links=['api-oauth.govcms.local'],
-    labels=['API'])
-dc_resource('mariadb', labels=['Development'])
+    'keycloak',
+    resource_deps=['postgres'],
+    labels=['Service'])
 dc_resource('mailhog', labels=['Development'])
 dc_resource('adminer', labels=['Development'])
-dc_resource('nginx-proxy', labels=['Development'])
+
+# Group the sites.
+dc_resource(
+    'client1',
+    resource_deps=['nginx-proxy', 'mariadb'],
+    links=['client1.govcms.local'],
+    labels=['Client'])
+dc_resource(
+    'client2',
+    resource_deps=['nginx-proxy', 'mariadb'],
+    links=['client2.govcms.local'],
+    labels=['Client'])
+dc_resource(
+    'api',
+    resource_deps=['nginx-proxy', 'mariadb'],
+    links=['api.govcms.local'],
+    labels=['API'])
+dc_resource(
+    'api-miniorange',
+    resource_deps=['nginx-proxy', 'mariadb'],
+    links=['api-miniorange.govcms.local'],
+    labels=['API'])
+dc_resource(
+    'api-oauth',
+    resource_deps=['nginx-proxy', 'mariadb'],
+    links=['api-oauth.govcms.local'],
+    labels=['API'])
+
 
 # Good bye.
 if config.tilt_subcommand == 'down':

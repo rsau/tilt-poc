@@ -15,6 +15,8 @@ services:
       MARIADB_DATABASE: drupal
       MARIADB_USER: drupal
       MARIADB_PASSWORD: drupal
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "--silent" ]
     volumes:
       - ./.docker/mariadb:/docker-entrypoint-initdb.d
       - ./data/db:/var/lib/mysql
@@ -30,6 +32,32 @@ services:
     ports:
       - "1025:1025"
       - "8025:8025"
+
+  postgres:
+    image: postgres
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: password
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:legacy
+    restart: always
+    ports:
+      - "50003:8080"
+    environment:
+      DB_VENDOR: POSTGRES
+      DB_ADDR: postgres
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_SCHEMA: public
+      DB_PASSWORD: password
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: Pa55w0rd
+    depends_on:
+      - postgres
 
 networks:
   govcms-api-network:
