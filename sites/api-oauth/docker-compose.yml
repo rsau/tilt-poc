@@ -4,6 +4,9 @@ services:
     image: govcms.api/govcms-oauth
     ports:
       - "52002:80"
+    environment:
+      - VIRTUAL_HOST=api-oauth.govcms.local
+      - VIRTUAL_PORT=80
     volumes:
       - ./sites/api-oauth/modules:/var/www/html/modules/custom
       - ./sites/api-oauth/themes:/var/www/html/themes/custom
