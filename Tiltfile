@@ -19,14 +19,14 @@ docker_build('govcms.api/govcms-miniorange', './.docker/govcms-api')
 docker_build('govcms.api/govcms-oauth', './.docker/govcms-api-oauth')
 
 # Group the development services.
+dc_resource('client1', labels=['Client'])
+dc_resource('client2', labels=['Client'])
 dc_resource('api', labels=['API'])
 dc_resource('api-miniorange', labels=['API'])
 dc_resource(
     'api-oauth', 
     links =['api-oauth.govcms.local'],
     labels=['API'])
-dc_resource('client1', labels=['Client'])
-dc_resource('client2', labels=['Client'])
 dc_resource('mariadb', labels=['Development'])
 dc_resource('mailhog', labels=['Development'])
 dc_resource('adminer', labels=['Development'])
