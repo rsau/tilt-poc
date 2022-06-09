@@ -21,13 +21,34 @@ docker_build('govcms.api/govcms-oauth', './.docker/govcms-api-oauth')
 # Group the development services.
 dc_resource('nginx-proxy', labels=['Service'])
 dc_resource('mariadb', labels=['Service'])
-dc_resource('postgres', labels=['Service'])
+dc_resource('mailhog', labels=['Development'])
+dc_resource('adminer', labels=['Development'])
+
+# Group the keycloak.
+dc_resource('postgres', labels=['Keycloak'])
 dc_resource(
     'keycloak',
     resource_deps=['postgres'],
-    labels=['Service'])
-dc_resource('mailhog', labels=['Development'])
-dc_resource('adminer', labels=['Development'])
+    labels=['Keycloak'])
+
+# Group the Kong.
+dc_resource('kong-database', labels=['Kong'])
+dc_resource(
+    'kong-migration',
+    resource_deps=['kong-database'],
+    labels=['Kong'])
+dc_resource(
+    'kong',
+    resource_deps=['kong-migration'],
+    labels=['Kong'])
+dc_resource(
+    'konga-prepare',
+    resource_deps=['kong-database'],
+    labels=['Kong'])
+dc_resource(
+    'konga',
+    resource_deps=['kong'],
+    labels=['Kong'])
 
 # Group the sites.
 dc_resource(
