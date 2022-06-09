@@ -40,6 +40,7 @@ dc_resource(
 dc_resource(
     'kong',
     resource_deps=['kong-migration'],
+    links=['api.govcms.local'],
     labels=['Kong'])
 dc_resource(
     'konga-prepare',
@@ -64,7 +65,7 @@ dc_resource(
 dc_resource(
     'api',
     resource_deps=['nginx-proxy', 'mariadb'],
-    links=['api.govcms.local'],
+    links=['api-keycloak.govcms.local'],
     labels=['API'])
 dc_resource(
     'api-miniorange',
