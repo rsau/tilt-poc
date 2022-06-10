@@ -2,6 +2,9 @@ services:
 
   client2:
     image: govcms.api/govcms-client
+    environment:
+      - VIRTUAL_HOST=client2.govcms.local
+      - VIRTUAL_PORT=80
     ports:
       - "51003:80"
     volumes:
