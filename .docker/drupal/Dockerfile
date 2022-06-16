@@ -1,6 +1,6 @@
 FROM drupal:9-php8.1
 
-RUN apt-get update && apt-get install -q -y ssmtp mailutils git && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -q -y mariadb-client ssmtp mailutils git && rm -rf /var/lib/apt/lists/*
 
 RUN echo "hostname=govcms.local" > /etc/ssmtp/ssmtp.conf
 RUN echo "root=root@pgovcms.local" >> /etc/ssmtp/ssmtp.conf
