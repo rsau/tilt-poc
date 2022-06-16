@@ -18,6 +18,9 @@ docker_build('govcms.api/govcms-client', './.docker/govcms-client')
 docker_build('govcms.api/govcms-miniorange', './.docker/govcms-api')
 docker_build('govcms.api/govcms-oauth', './.docker/govcms-api-oauth')
 
+docker_compose(['./sites/client3/docker-compose.yml'])
+docker_compose(['./sites/client4/docker-compose.yml'])
+
 # Group the development services.
 dc_resource('nginx-proxy', labels=['Service'])
 dc_resource('mariadb', labels=['Service'])

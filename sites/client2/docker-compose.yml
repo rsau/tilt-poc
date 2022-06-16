@@ -6,7 +6,7 @@ services:
       - VIRTUAL_HOST=client2.govcms.local
       - VIRTUAL_PORT=80
     ports:
-      - "51003:80"
+      - "51002:80"
     volumes:
       - ./sites/client2/modules:/var/www/html/modules/custom
       - ./sites/client2/themes:/var/www/html/themes/custom

@@ -3,7 +3,7 @@ services:
   api:
     image: govcms.api/govcms
     ports:
-      - "51001:80"
+      - "52000:80"
     environment:
       - VIRTUAL_HOST=api-keycloak.govcms.local
       - VIRTUAL_PORT=80
