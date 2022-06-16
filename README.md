@@ -6,6 +6,14 @@
 
 - [Tilt.dev](https://tilt.dev/)
 
+### Setup
+
+```bash
+git clone https://github.com/govcms-extras/poc govcms-api
+cd govcms-api/
+tilt up
+```
+
 ### Local hosts
 
 You can edit your local host or use the localhost with different ports to access the local services
