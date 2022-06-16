@@ -72,9 +72,11 @@ dc_resource(
     labels=['API'])
 dc_resource(
     'api-miniorange',
+    trigger_mode=TRIGGER_MODE_MANUAL,
     resource_deps=['nginx-proxy', 'mariadb'],
     links=['api-miniorange.govcms.local'],
-    labels=['API'])
+    labels=['API'],
+    auto_init=False)
 dc_resource(
     'api-oauth',
     resource_deps=['nginx-proxy', 'mariadb'],
