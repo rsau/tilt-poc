@@ -12,5 +12,11 @@ You can edit your local host or use the localhost with different ports to access
 
 ```bash
 # GovCMS API
-127.0.0.1 api-oauth.govcms.local api.govcms.local
+127.0.0.1 api-oauth client2
+127.0.0.1 api.govcms.local
+127.0.0.1 api-oauth.govcms.local
+127.0.0.1 api-keycloak.govcms.local
+127.0.0.1 api-miniorange.govcms.local
+127.0.0.1 client1.govcms.local
+127.0.0.1 client2.govcms.local
 ```
