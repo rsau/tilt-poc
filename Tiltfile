@@ -78,6 +78,10 @@ dc_resource(
     links=['api-oauth.govcms.local'],
     labels=['API'])
 
+# Conditionally load a local.tiltfile for additional functionality.
+if os.path.exists('local.tiltfile'):
+  load_dynamic('local.tiltfile')
+
 # Good bye.
 if config.tilt_subcommand == 'down':
     print('Greetings!')
