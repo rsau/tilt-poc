@@ -2,12 +2,15 @@ services:
 
   api-miniorange:
     image: govcms.api/govcms-miniorange
-    ports:
-      - "52001:80"
+    environment:
+      - VIRTUAL_HOST=api-oauth.govcms.local
+      - VIRTUAL_PORT=80
     volumes:
       - ./sites/api-miniorange/modules:/var/www/html/modules/custom
       - ./sites/api-miniorange/themes:/var/www/html/themes/custom
       - ./sites/api-miniorange/sites:/var/www/html/sites:delegated
+    ports:
+      - "52001:80"
 
 networks:
   govcms-api-network:
