@@ -1,6 +1,6 @@
 services:
 
-  client1:
+  {client}:
     image: govcms.api/govcms-client
     ports:
       - "{port}:80"

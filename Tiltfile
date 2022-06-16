@@ -78,7 +78,6 @@ dc_resource(
     links=['api-oauth.govcms.local'],
     labels=['API'])
 
-
 # Good bye.
 if config.tilt_subcommand == 'down':
-    print('Goodbye world!')
+    print('Greetings!')

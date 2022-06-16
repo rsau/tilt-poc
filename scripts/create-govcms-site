@@ -1,0 +1,32 @@
+#!/bin/sh
+
+helpFunction()
+{
+   echo ""
+   echo "Usage: $0 -c {client} -p {port}"
+   echo "\t-c Please input a short project name for this GovCMS site"
+   echo "\t-p Please assign a port number to this site"
+   exit 1
+}
+
+while getopts "c:p:" opt
+do
+   case "$opt" in
+      c ) client="$OPTARG" ;;
+      p ) port="$OPTARG" ;;
+      ? ) helpFunction ;;
+   esac
+done
+
+if [ -z "$client" ] || [ -z "$port" ]
+then
+   echo "Some or all of the parameters are empty";
+   helpFunction
+fi
+
+rsync -a --delete ./sites/client-template/ ./sites/$client/ \
+&& sed -i.bak -e "s#{client}#$client#g" ./sites/$client/docker-compose.yml \
+&& sed -i.bak -e "s#{port}#$port#g" ./sites/$client/docker-compose.yml \
+&& rm ./sites/$client/*.bak
+
+echo "Done"

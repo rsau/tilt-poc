@@ -249,7 +249,7 @@ $databases = [];
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = '-j7jfEnEpVoZ6QTKoWPB3mrirbClMIl5ZqACMTPhAoGIcFlm5seWRl4AqQzJCkJAjwx1qIHS6Q';
+$settings['hash_salt'] = '';
 
 /**
  * Deployment identifier.
@@ -771,14 +771,3 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 # if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
-$databases['default']['default'] = array (
-  'database' => 'client3',
-  'username' => 'drupal',
-  'password' => 'drupal',
-  'prefix' => '',
-  'host' => 'mariadb',
-  'port' => '3306',
-  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-  'driver' => 'mysql',
-);
-$settings['config_sync_directory'] = 'sites/default/files/config_18Gk2zAtv2VAv-Pci3ktt0rM6nTm9YJ878MWR6seGJs7HwJlFpjJql46s1aWufCBvn90kqpeTQ/sync';
