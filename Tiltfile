@@ -67,9 +67,11 @@ dc_resource(
     labels=['Client'])
 dc_resource(
     'api',
+    trigger_mode=TRIGGER_MODE_MANUAL,
     resource_deps=['nginx-proxy', 'mariadb'],
     links=['api-keycloak.govcms.local'],
-    labels=['API'])
+    labels=['API'],
+    auto_init=False)
 dc_resource(
     'api-miniorange',
     trigger_mode=TRIGGER_MODE_MANUAL,
